@@ -43,6 +43,9 @@ public class GunScript : MonoBehaviour
             Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
             rigidbody.velocity = (-1) * transform.forward * bulletSpeed;
             audioSource.Play();
+
+            // Add bullet collision
+            bullet.AddComponent<DestroyCubes>();
         }
     }
 }
