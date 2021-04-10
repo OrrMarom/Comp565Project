@@ -17,15 +17,14 @@ public class DestroyCubes : MonoBehaviour
     }
 
     //Detect collisions between the GameObjects with Colliders attached
+    //Used with bullets, not currently used in raycast approach
     void OnCollisionEnter(Collision collision)
     {
-        //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == "DestructableCube")
         {
             //If the GameObject's name matches the one you suggest, output this message in the console
             Debug.Log("Hit cube at " + collision.gameObject.transform.position);
             GameObject g = collision.gameObject;
-            collision.gameObject.GetComponentInParent<CubeRoot>().DestroyNearby(g, 0);
         }
     }
 }
