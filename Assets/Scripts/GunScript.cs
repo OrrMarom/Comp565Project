@@ -23,13 +23,16 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Disabled bullets to practice cubes with raycast
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             GameObject bullet = Instantiate(prefabBullet) as GameObject;
             GameObject hiddenBullet = GameObject.Find("hiddenBullet");
-            /*float x = transform.position.x;
-            float y = transform.position.y;
-            float z = transform.position.z - 2f;*/
+            //float x = transform.position.x;
+            //float y = transform.position.y;
+            //float z = transform.position.z - 2f;
             float x = hiddenBullet.transform.position.x;
             float y = hiddenBullet.transform.position.y;
             float z = hiddenBullet.transform.position.z;
@@ -43,6 +46,10 @@ public class GunScript : MonoBehaviour
             Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
             rigidbody.velocity = (-1) * transform.forward * bulletSpeed;
             audioSource.Play();
+
+            // Add bullet collision
+            bullet.AddComponent<DestroyCubes>();
         }
+        */
     }
 }
