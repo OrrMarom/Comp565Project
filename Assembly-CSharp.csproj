@@ -66,12 +66,15 @@
   <ItemGroup>
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\Chunk.cs" />
     <Compile Include="Assets\Scripts\CubeDestruction.cs" />
     <Compile Include="Assets\Scripts\CubeRoot.cs" />
     <Compile Include="Assets\Scripts\DestroyCubes.cs" />
     <Compile Include="Assets\Scripts\GunScript.cs" />
     <Compile Include="Assets\Scripts\MouseDestroy.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\VoxelData.cs" />
+    <Compile Include="Assets\Scripts\World.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
