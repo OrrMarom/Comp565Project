@@ -35,7 +35,8 @@ public class PlayerControllerAnimal : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
             anim.SetInteger("Walk", 1);
         }
-        else {
+        else 
+        {
             anim.SetInteger("Walk", 0);
         }
 

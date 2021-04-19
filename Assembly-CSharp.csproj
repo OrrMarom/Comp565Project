@@ -72,6 +72,18 @@
     <Compile Include="Assets\Scripts\DestroyCubes.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GunScript.cs" />
+    <Compile Include="Assets\Scripts\Level\CreateLevel.cs" />
+    <Compile Include="Assets\Scripts\Level\CreateObjects.cs" />
+    <Compile Include="Assets\Scripts\Level\GenerateLayout1.cs" />
+    <Compile Include="Assets\Scripts\Level\GenerateRandomLayout.cs" />
+    <Compile Include="Assets\Scripts\Level\ItemSpawner.cs" />
+    <Compile Include="Assets\Scripts\Level\LayoutGenerator.cs" />
+    <Compile Include="Assets\Scripts\Level\MazeGenerator.cs" />
+    <Compile Include="Assets\Scripts\Level\MazeLevel.cs" />
+    <Compile Include="Assets\Scripts\Level\NavCamera.cs" />
+    <Compile Include="Assets\Scripts\Level\SkyManager.cs" />
+    <Compile Include="Assets\Scripts\Level\TargetBehavior.cs" />
+    <Compile Include="Assets\Scripts\Level\TargetSpawner.cs" />
     <Compile Include="Assets\Scripts\MouseDestroy.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\VoxelData.cs" />
@@ -79,6 +91,8 @@
     <Compile Include="Assets\VoxelAnimals\Assets\Scripts\PlayerControllerAnimal.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Resources\WorldMaterialsFree\WorldMatLiteFree.shader" />
+    <None Include="Assets\Resources\WorldMaterialsFree\WorldMatFree.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -90,6 +104,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Resources\SimpleSky\ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
