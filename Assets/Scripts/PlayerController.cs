@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravity = -13.0f;
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
+    private float jumpHeight = 1.0f;
 
     [SerializeField] bool lockCursor = true;
 
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
+    float newWalkSpeed;
+    float currentSprintVel;
     CharacterController controller = null;
 
     Vector2 currentDir = Vector2.zero;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        newWalkSpeed = walkSpeed;
         controller = GetComponent<CharacterController>();
         if (lockCursor)
         {
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateMovement()
     {
+        
         Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDir.Normalize();
 
@@ -67,7 +72,18 @@ public class PlayerController : MonoBehaviour
 
         velocityY += gravity * Time.deltaTime;
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;
+		if (Input.GetKeyDown (KeyCode.Space) && controller.isGrounded) {
+			velocityY += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+		}
+
+		if (Input.GetKey (KeyCode.LeftShift) && controller.isGrounded) {
+			newWalkSpeed = Mathf.SmoothDamp(newWalkSpeed, walkSpeed * 2, ref currentSprintVel, 0.2f);
+		}else if (controller.isGrounded){
+            currentSprintVel = 0;
+            newWalkSpeed =  walkSpeed;
+        }
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * newWalkSpeed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
 
