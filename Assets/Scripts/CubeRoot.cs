@@ -44,6 +44,14 @@ public class CubeRoot : MonoBehaviour
             float distanceSqr = (t.position - gObj.transform.position).sqrMagnitude;
             if (distanceSqr < range)
             {
+                var ray = new Ray(gObj.transform.position, Vector3.up);
+                var above = Physics.RaycastAll(ray);
+                int i = 0;
+                foreach (RaycastHit cube in above){
+                    if (i > 3) break;
+                    cube.transform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    i++;
+                }
                 gObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 gObj.AddComponent<CubeDestruction>();
                 gObj.GetComponent<CubeDestruction>().explode(force_vector, force_intensity);
