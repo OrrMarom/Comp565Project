@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 70c91d1355dd34035a8ed0853a7318d0
   - enabled: 1
-    path: Assets/Scenes/Sulaiman Scene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Sulaiman Scene 2.unity
+    guid: 5a06735b7d65ff2489ad0e9f9b935e0d
   m_configObjects: {}
