@@ -9,22 +9,17 @@ public class MazeGenerator : MonoBehaviour
     public Vector3 floorDimensions;
     public Vector3 wallDimensions;
     public Vector3 initialTilePosition;
-    [SerializeField] private Material floorMat;
 
     //[SerializeField] private int wallsDestroyed = 0;
+
+    [SerializeField] private int playerTileIndex;
+    [SerializeField] private int exitTileIndex;
 
     public List<GameObject> walls;
     public List<GameObject> floors;
     public List<GameObject> items;
-    public List<GameObject> enemies;
 
-    private Vector2Int treasureLocation;
-    private Vector2Int playerLocation;
-    public GameObject player;
-    public GameObject treasure;
-    [SerializeField] private int enemyCount;
-    
-    
+
     public void Start() {
         // Initialize game objects
         floorDimensions = new Vector3(2.0f, 1.0f, 2.0f);
@@ -59,29 +54,7 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        // --- Place items and player.
-
-        // Hashtable h = new Hashtable();
-        // h.Add(playerLocation, player);
-
-        // player
-        for (int i = 1; i < rows - 1; i++) {
-            for (int j = 1; j < cols - 1; j++) {
-                if (maze[i, j] == 0) {
-                    playerLocation = new Vector2Int(i, j);
-                }
-            }
-        }
-        // treasure
-        for (int i = rows - 1; i > 0; i--) {
-            for (int j = cols - 1; j > 0; j--) {
-                if (maze[i, j] == 0) {
-                    treasureLocation = new Vector2Int(i, j);
-                }
-            }
-        }
-
-        // --- Instantiate all objects
+        // --- Create maze floor.
         GameObject Base = new GameObject("Base"); // Parent gameobject for floor tiles.
 
         float tilePositionX = 0.0f;
@@ -92,19 +65,7 @@ public class MazeGenerator : MonoBehaviour
         float floorDepth = floorDimensions.z;
         initialTilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
 
-        // Create single base floor. 
-        // GameObject Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        // Floor.transform.localScale = new Vector3( (float) cols * floorWidth, 1.0f, (float) rows * floorDepth);
-        // Floor.transform.position = initialTilePosition;
-        // if (floorMat) {
-        //     Floor.GetComponent<Renderer>().material = floorMat;
-        // }
-
-        if (enemyCount == 0) {
-            enemyCount = 5;
-        }
-
-        // Create maze.
+        // Generate Prefabs.
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 Vector3 tilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
@@ -114,24 +75,6 @@ public class MazeGenerator : MonoBehaviour
                     Vector3 wallPosition = new Vector3(tilePositionX, tilePositionY + floorHeight, tilePositionZ);
                     Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
                 }
-
-                // Instantiate player and items.
-                Vector3 itemPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
-                if (maze[i, j] == 0) {
-                    if (i == playerLocation.x && j == playerLocation.y) {
-                        Instantiate(player, itemPosition, Quaternion.identity);
-                    } else if (i == treasureLocation.x && j == treasureLocation.y) {
-                        Instantiate(treasure, itemPosition, Quaternion.identity);
-                    } else {
-                        if (Random.value > 0.6) {
-                            Instantiate(items[Random.Range(0, items.Count)], itemPosition, Quaternion.identity);
-                        } else if (enemyCount > 0){
-                            Instantiate(enemies[Random.Range(0, enemies.Count)], itemPosition, Quaternion.identity);
-                            enemyCount--;
-                        }
-                    }
-                }
-
                 tilePositionZ += floorDepth;
             }
             tilePositionZ = initialTilePosition.z; // reset z position.
@@ -154,14 +97,10 @@ public class MazeGenerator : MonoBehaviour
     }
 
     private void DeleteOldMaze() {
-        // GameObject[] floorTiles = GameObject.FindGameObjectsWithTag("Floor");
-        // foreach (GameObject obj in floorTiles) {
-        //     Destroy(obj);
-        // }
-        // GameObject[] wallTiles = GameObject.FindGameObjectsWithTag("Wall");
-        // foreach (GameObject obj in wallTiles) {
-        //     Destroy(obj);
-        // }
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Generated");
+        foreach (GameObject obj in objects) {
+            Destroy(obj);
+        }
         //Destroy(Maze);
     }
 

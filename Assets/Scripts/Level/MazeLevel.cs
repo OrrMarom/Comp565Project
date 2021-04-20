@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System;
@@ -16,7 +17,7 @@ public class MazeLevel : MonoBehaviour
     [SerializeField] private int rows;
     [SerializeField] private int cols;
 
-    [SerializeField] private int timeLimit; // seconds
+    private int timeLimit = 90; // seconds
 
     private Stopwatch timer;
     private int timeRemaining;
@@ -25,21 +26,20 @@ public class MazeLevel : MonoBehaviour
     private bool gameOver = false;
     private bool goalReached = false;
 
+    public GameObject navMesh;
+
     private MazeGenerator mazeGenerator;
  
     void Start()
     {
+        navMesh = GameObject.Find("NavMesh");
         mazeGenerator = GetComponent<MazeGenerator>(); // Get component with type MazeGenerator attached to this object. 
+        //timeLabel = GameObject.Find
         NewGame();
     }
 
     private void NewGame() 
     {
-        // Default time limit.
-        if (timeLimit == 0) {
-            timeLimit = 60;
-        }
-
         // Default maze size. 
         if (rows == 0 || cols == 0) {
             rows = 15; 
@@ -48,7 +48,8 @@ public class MazeLevel : MonoBehaviour
 
         mazeGenerator.CreateNewMaze(rows, cols);
 
-        // Initialize time.
+        // --- Initialize values.
+        // Time.
         timeRemaining = timeLimit;
         timeLabel.text = timeLimit.ToString();
         timer = new Stopwatch();
@@ -59,38 +60,32 @@ public class MazeLevel : MonoBehaviour
         scoreLabel.text = "Score: " + score.ToString();
 
         // Display Rules UI.
+
+
+        // Bake NavMesh
+        navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
+
     }
 
-    private void addToScore(int points) {
+    public void setScore(int points) {
         score += points;
-    }
-
-    private void pickupKey() {
-        addToScore(500);
-    }
-
-    private void pickupAmmo() {
-        addToScore(50);
-    }
-
-    private void pickupTreasure() {
-        addToScore(2000);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Update timer.
-        TimeSpan timeElapsed = timer.Elapsed;
-        timeRemaining = (timeLimit - timeElapsed.Seconds);
         if (timeRemaining > 0) {
-            timeLabel.text = timeRemaining.ToString(); // update timeLabel
+
         } else {
-            timeLabel.text = "0";
             timer.Stop();
-            gameOver = true;
         }
         
+
+        // update timeLabel
+        TimeSpan timeElapsed = timer.Elapsed;
+        timeRemaining = (timeLimit - timeElapsed.Seconds);
+        timeLabel.text = timeRemaining.ToString();
+
         // update scoreLabel
         scoreLabel.text = "Score: " + score.ToString();
 
@@ -101,10 +96,13 @@ public class MazeLevel : MonoBehaviour
 
         if (goalReached) {
             // Calculate total score  
-            addToScore(timeRemaining * 1000);
+            score += (timeRemaining * 1000);
 
             // Cleared UI.
             // "Level Cleared!"; "Score: "
         }
+
+
+        
     }
 }
