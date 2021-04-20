@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Hud.meta
+guid: 8e40331f02e8ff944a1d6fc6b4dd47a4
+=======
+guid: 7a03955bd306ec64783460fc4025ab57
+>>>>>>> main:Assets/NavMeshComponents.meta
+=======
+guid: 50edb5a6d83347f44a9d443d9fcc6ad6
+>>>>>>> main
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
