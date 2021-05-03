@@ -29,7 +29,14 @@ public class MouseDestroy : MonoBehaviour
                 // Pointing away from player towards object
                 Vector3 force = v2 - v1;
 
-                hitInfo.collider.gameObject.GetComponentInParent<CubeRoot>().RadiusDestroy(hitInfo.collider.gameObject, force, 1);
+                Debug.Log("tag = " + hitInfo.collider.tag);
+
+                // Only destroy walls
+                if (hitInfo.collider.tag == "DestructableCube")
+                {
+                    //hitInfo.collider.gameObject.GetComponentInParent<CubeRoot>().RadiusDestroy(hitInfo.collider.gameObject, force, 1);
+                    hitInfo.collider.gameObject.transform.parent.GetComponentInParent<CubeRoot>().RadiusDestroy(hitInfo.collider.gameObject, force, 1);
+                }
             }
         }
     }
