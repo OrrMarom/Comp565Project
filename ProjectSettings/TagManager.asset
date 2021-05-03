@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HiddenBullet
-<<<<<<< HEAD
   - DestructableCube
   - Wall
-=======
->>>>>>> main
   layers:
   - Default
   - TransparentFX
@@ -19,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Player
   - Cloud
+  - Player
+  - 
   - 
   - 
   - 

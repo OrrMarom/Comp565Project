@@ -126,6 +126,8 @@ public class MazeGenerator : MonoBehaviour
                         if (Random.value > 0.6) {
                             Instantiate(items[Random.Range(0, items.Count)], itemPosition, Quaternion.identity);
                         } else if (enemyCount > 0){
+                            //// Place enemies on floor so that NavMesh detection works properly
+                            //itemPosition.y = 0.5f;
                             Instantiate(enemies[Random.Range(0, enemies.Count)], itemPosition, Quaternion.identity);
                             enemyCount--;
                         }

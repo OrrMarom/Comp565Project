@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System;
@@ -25,10 +26,13 @@ public class MazeLevel : MonoBehaviour
     private bool gameOver = false;
     private bool goalReached = false;
 
+    public GameObject navMesh;
+
     private MazeGenerator mazeGenerator;
  
     void Start()
     {
+        navMesh = GameObject.Find("NavMesh");
         mazeGenerator = GetComponent<MazeGenerator>(); // Get component with type MazeGenerator attached to this object. 
         NewGame();
     }
@@ -59,6 +63,9 @@ public class MazeLevel : MonoBehaviour
         scoreLabel.text = "Score: " + score.ToString();
 
         // Display Rules UI.
+
+        // Bake NavMesh
+        navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     private void addToScore(int points) {
