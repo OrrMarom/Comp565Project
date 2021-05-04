@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HiddenBullet
   - DestructableCube
-  - Target
-  - Metal
-  - ExplosiveBarrel
-  - PistalGun
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -19,11 +15,11 @@ TagManager:
   - UI
   - 
   - 
+  - Cloud
+  - Player
+  - Ground
   - 
-  - 
-  - 
-  - 
-  - 
+  - DestructableWall
   - 
   - 
   - 

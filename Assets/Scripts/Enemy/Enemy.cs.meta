@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Scripts/Enemy.cs.meta
+guid: 6e404ef9a9ac32042801a77df878ca6c
+=======
+guid: 32ec113f817452b4ea69b2b6d95f2ce9
+>>>>>>> main:Assets/Scripts/Hud/HealthBar.cs.meta
+=======
+guid: 6e404ef9a9ac32042801a77df878ca6c
+>>>>>>> main
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

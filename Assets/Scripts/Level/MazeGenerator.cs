@@ -23,6 +23,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject player;
     public GameObject treasure;
     [SerializeField] private int enemyCount;
+    private int keyCount;
     
     
     public void Start() {
@@ -84,6 +85,9 @@ public class MazeGenerator : MonoBehaviour
         // --- Instantiate all objects
         GameObject Base = new GameObject("Base"); // Parent gameobject for floor tiles.
 
+        // Give Base CubeRoot
+        Base.AddComponent<CubeRoot>();
+
         float tilePositionX = 0.0f;
         float tilePositionY = 0.0f;
         float tilePositionZ = 0.0f;
@@ -100,6 +104,7 @@ public class MazeGenerator : MonoBehaviour
         //     Floor.GetComponent<Renderer>().material = floorMat;
         // }
 
+        // Initialize enemies
         if (enemyCount == 0) {
             enemyCount = 5;
         }
@@ -110,23 +115,25 @@ public class MazeGenerator : MonoBehaviour
                 Vector3 tilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
                 GameObject floor = Instantiate(floors[Random.Range(0, floors.Count)], tilePosition, Quaternion.identity, Base.transform); // spawn prefab
                 //floor.tag = "Generated";
+                floor.tag = "Ground";
                 if (maze[i, j] == 1) {
                     Vector3 wallPosition = new Vector3(tilePositionX, tilePositionY + floorHeight, tilePositionZ);
-                    Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
+                    GameObject wall = Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
                 }
 
-                // Instantiate player and items.
-                Vector3 itemPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
+                // Instantiate entities and items.
+                Vector3 spawnPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
                 if (maze[i, j] == 0) {
                     if (i == playerLocation.x && j == playerLocation.y) {
-                        Instantiate(player, itemPosition, Quaternion.identity);
+                        //Instantiate(player, spawnPosition, Quaternion.identity);
+                        player.transform.position = spawnPosition;
                     } else if (i == treasureLocation.x && j == treasureLocation.y) {
-                        Instantiate(treasure, itemPosition, Quaternion.identity);
+                        Instantiate(treasure, spawnPosition, Quaternion.identity);
                     } else {
                         if (Random.value > 0.6) {
-                            Instantiate(items[Random.Range(0, items.Count)], itemPosition, Quaternion.identity);
+                            Instantiate(items[Random.Range(0, items.Count)], spawnPosition, Quaternion.identity);
                         } else if (enemyCount > 0){
-                            Instantiate(enemies[Random.Range(0, enemies.Count)], itemPosition, Quaternion.identity);
+                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);
                             enemyCount--;
                         }
                     }
