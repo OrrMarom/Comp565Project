@@ -30,6 +30,10 @@ public class MouseDestroy : MonoBehaviour
                 Vector3 force = v2 - v1;
 
                 Debug.Log("tag = " + hitInfo.collider.tag);
+                Debug.Log("obj = " + hitInfo.collider.name);
+                Debug.Log("parent = " + hitInfo.collider.transform.parent.name);
+                Debug.Log("location = " + hitInfo.collider.transform.position);
+                Debug.Log("parent location = " + hitInfo.collider.transform.parent.position);
 
                 // Only destroy walls
                 if (hitInfo.collider.tag == "DestructableCube")

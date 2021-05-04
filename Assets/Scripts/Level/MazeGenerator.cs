@@ -124,6 +124,10 @@ public class MazeGenerator : MonoBehaviour
                 if (maze[i, j] == 0) {
                     if (i == playerLocation.x && j == playerLocation.y) {
                         Instantiate(player, itemPosition, Quaternion.identity);
+                        player.SetActive(false);
+                        // Disable maincamera for old player, otherwise raycasts will use it
+                        player.transform.GetChild(0).tag = "Untagged";
+                        Debug.Log("moving player");
                     } else if (i == treasureLocation.x && j == treasureLocation.y) {
                         Instantiate(treasure, itemPosition, Quaternion.identity);
                     } else {

@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 1731614520}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   - {fileID: 3050928131002233561, guid: e98c7954dc0468445bb551b95bf8fa55, type: 3}
   enemies:
   - {fileID: 865784305}
-  player: {fileID: 8076961784481767590, guid: 84330d36fcb21430d8910307bab08886, type: 3}
+  player: {fileID: 1322011892}
   treasure: {fileID: 735312312059532066, guid: f8208361fc863b546a509cfc71447d71, type: 3}
   enemyCount: 5
 --- !u!1 &1977413375
