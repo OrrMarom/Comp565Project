@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public float speed;
-    public float bulletSpeed;
-    Rigidbody rb;
+    //public float speed;
+   // public float bulletSpeed;
+    //Rigidbody rb;
 
-    GameObject prefabBullet;
+    //GameObject prefabBullet;
+    DataSingleton dataSingleton;
 
-    public AudioSource audioSource;
+   // public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        prefabBullet = Resources.Load("Bullet") as GameObject;
-        audioSource = GetComponent<AudioSource>();
+       // rb = GetComponent<Rigidbody>();
+       // prefabBullet = Resources.Load("Bullet") as GameObject;
+      //  audioSource = GetComponent<AudioSource>();
+        dataSingleton = DataSingleton.Instance;
     }
 
     // Update is called once per frame
@@ -51,5 +53,22 @@ public class GunScript : MonoBehaviour
             bullet.AddComponent<DestroyCubes>();
         }
         */
+
+        if (dataSingleton.getHoldingWeapon() == false || dataSingleton.getThrowingGrenate() == true)
+        {
+            //make the gun invisible
+            GameObject gun = GameObject.FindGameObjectWithTag("PistalGun");
+            Renderer gunRenderer = gun.GetComponent<Renderer>();
+            gunRenderer.enabled = false;
+
+            gun.SetActive(false);
+
+        }
+        else
+        {
+            //make the gun visible
+            GameObject gun = GameObject.FindGameObjectWithTag("PistalGun");
+            gun.SetActive(true);
+        }
     }
 }
