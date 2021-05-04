@@ -10,7 +10,7 @@ public class GunScript : MonoBehaviour
 
     //GameObject prefabBullet;
     DataSingleton dataSingleton;
-
+    GameObject gun;
    // public AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -19,7 +19,8 @@ public class GunScript : MonoBehaviour
        // rb = GetComponent<Rigidbody>();
        // prefabBullet = Resources.Load("Bullet") as GameObject;
       //  audioSource = GetComponent<AudioSource>();
-        dataSingleton = DataSingleton.Instance;
+        dataSingleton = DataSingleton.getInstance();
+        gun = GameObject.FindGameObjectWithTag("PistalGun");
     }
 
     // Update is called once per frame
@@ -54,20 +55,24 @@ public class GunScript : MonoBehaviour
         }
         */
 
-        if (dataSingleton.getHoldingWeapon() == false || dataSingleton.getThrowingGrenate() == true)
+        if (dataSingleton.getHoldingWeapon() == false)
         {
             //make the gun invisible
-            GameObject gun = GameObject.FindGameObjectWithTag("PistalGun");
-            Renderer gunRenderer = gun.GetComponent<Renderer>();
-            gunRenderer.enabled = false;
+
+            /*            Renderer gunRenderer = gun.GetComponent<Renderer>();
+                        gunRenderer.enabled = false;*/
 
             gun.SetActive(false);
 
         }
-        else
+        else if (dataSingleton.getThrowingGrenate() == true)
+        {
+
+            gun.SetActive(false);
+        }
+        else if (dataSingleton.getHoldingWeapon() == true)
         {
             //make the gun visible
-            GameObject gun = GameObject.FindGameObjectWithTag("PistalGun");
             gun.SetActive(true);
         }
     }

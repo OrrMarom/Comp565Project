@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataSingleton : MonoBehaviour
+public class DataSingleton
 {
 
     private DataSingleton()
@@ -12,12 +12,12 @@ public class DataSingleton : MonoBehaviour
     private static DataSingleton instance = null;
 
     private int personCamera = 0; //0 -> first person, 1 -> third Person
-    private bool holdingWeapon = false;
+    private bool holdingWeapon = true;
     private int numberOfGrenates = 0;
     private bool throwingGrenate = false;
 
 
-    public static DataSingleton Instance
+/*    public static DataSingleton Instance
     {
         get
         {
@@ -28,8 +28,17 @@ public class DataSingleton : MonoBehaviour
 
             return instance;
         }
-    }
+    }*/
 
+    public static DataSingleton getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new DataSingleton();
+        }
+
+        return instance;
+    }
     public void setHoldingWeapon(bool status)
     {
         holdingWeapon = status;

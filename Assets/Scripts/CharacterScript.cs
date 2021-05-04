@@ -11,7 +11,7 @@ public class CharacterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dataSingleton = DataSingleton.Instance;
+        dataSingleton = DataSingleton.getInstance();
         anim = this.GetComponent<Animator>();
         anim.SetBool("Carrying Weapon", false);
     }
