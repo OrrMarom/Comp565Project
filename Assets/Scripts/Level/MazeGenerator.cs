@@ -23,6 +23,7 @@ public class MazeGenerator : MonoBehaviour
     public GameObject player;
     public GameObject treasure;
     [SerializeField] private int enemyCount;
+    private int keyCount;
     
     
     public void Start() {
@@ -100,6 +101,7 @@ public class MazeGenerator : MonoBehaviour
         //     Floor.GetComponent<Renderer>().material = floorMat;
         // }
 
+        // Initialize enemies
         if (enemyCount == 0) {
             enemyCount = 5;
         }
@@ -115,18 +117,19 @@ public class MazeGenerator : MonoBehaviour
                     Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
                 }
 
-                // Instantiate player and items.
-                Vector3 itemPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
+                // Instantiate entities and items.
+                Vector3 spawnPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
                 if (maze[i, j] == 0) {
                     if (i == playerLocation.x && j == playerLocation.y) {
-                        Instantiate(player, itemPosition, Quaternion.identity);
+                        //Instantiate(player, spawnPosition, Quaternion.identity);
+                        player.transform.position = spawnPosition;
                     } else if (i == treasureLocation.x && j == treasureLocation.y) {
-                        Instantiate(treasure, itemPosition, Quaternion.identity);
+                        Instantiate(treasure, spawnPosition, Quaternion.identity);
                     } else {
                         if (Random.value > 0.6) {
-                            Instantiate(items[Random.Range(0, items.Count)], itemPosition, Quaternion.identity);
+                            Instantiate(items[Random.Range(0, items.Count)], spawnPosition, Quaternion.identity);
                         } else if (enemyCount > 0){
-                            Instantiate(enemies[Random.Range(0, enemies.Count)], itemPosition, Quaternion.identity);
+                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);
                             enemyCount--;
                         }
                     }

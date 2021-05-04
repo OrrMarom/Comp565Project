@@ -11,8 +11,27 @@ using TMPro;
 [RequireComponent(typeof(MazeGenerator))] 
 public class MazeLevel : MonoBehaviour
 {
+    // Singleton
+    //private static MazeLevel levelInstance;
+
+    // Player and HUD variables
     [SerializeField] private TextMeshProUGUI timeLabel;
     [SerializeField] private TextMeshProUGUI scoreLabel;
+    private TextMeshProUGUI health;
+    [SerializeField] private TextMeshProUGUI ammo_r;
+    [SerializeField] private TextMeshProUGUI ammo_g;
+    [SerializeField] private TextMeshProUGUI ammo_b;
+    [SerializeField] private TextMeshProUGUI keyCount;
+
+    // Level item variables.
+    private int ammo_rCount = 0;
+    private int ammo_gCount = 0;
+    private int ammo_bCount = 0;
+    private int keysLeft;
+    private const string keyString = "Keys Left: ";
+    private int totalKeys = 5;
+
+    // Other level vars.
     [SerializeField] private int rows;
     [SerializeField] private int cols;
 
@@ -54,28 +73,36 @@ public class MazeLevel : MonoBehaviour
         timer = new Stopwatch();
         timer.Start();
 
-        // Score.
+        // Initialzie score.
         score = 0;
         scoreLabel.text = "Score: " + score.ToString();
+
+        // Initialize items.
+        ammo_r.text = ammo_rCount.ToString();
+        ammo_g.text = ammo_gCount.ToString();
+        ammo_b.text = ammo_bCount.ToString();
+        keysLeft = totalKeys;
+        keyCount.text = keyString + keysLeft.ToString();
+
 
         // Display Rules UI.
     }
 
-    private void addToScore(int points) {
+    public void addToScore(int points) {
         score += points;
     }
 
-    private void pickupKey() {
-        addToScore(500);
-    }
+    // private void pickupKey() {
+    //     addToScore(500);
+    // }
 
-    private void pickupAmmo() {
-        addToScore(50);
-    }
+    // private void pickupAmmo() {
+    //     addToScore(50);
+    // }
 
-    private void pickupTreasure() {
-        addToScore(2000);
-    }
+    // private void pickupTreasure() {
+    //     addToScore(2000);
+    // }
 
     // Update is called once per frame
     void Update()

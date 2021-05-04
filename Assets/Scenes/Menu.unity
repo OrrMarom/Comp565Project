@@ -2101,7 +2101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VOXEL GAME
+  m_text: VOXEL MAZE GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65e3a43d853684218bd2d75296a6abcc, type: 2}
   m_sharedMaterial: {fileID: 6052690058510399209, guid: 65e3a43d853684218bd2d75296a6abcc,
@@ -2165,7 +2165,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 25.58577, y: -94.34747, z: -94.34741, w: -9.594666}
+  m_margin: {x: 25.58577, y: -94.34747, z: -94.34741, w: -110.91748}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
