@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/VoxelAnimals/Assets/Animations/Cat.controller.meta
 guid: 93e3c2b08cdddef48a084d8def08276c
 NativeFormatImporter:
+=======
+guid: c738cebbe04bc4373b6075b4ff13aef0
+PrefabImporter:
+>>>>>>> main:Assets/Prefabs/Entities/Enemy Placeholder.prefab.meta
+=======
+guid: 93e3c2b08cdddef48a084d8def08276c
+NativeFormatImporter:
+>>>>>>> main
   externalObjects: {}
   mainObjectFileID: 9100000
   userData: 

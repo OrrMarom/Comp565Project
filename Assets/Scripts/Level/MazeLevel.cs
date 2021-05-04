@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System;
@@ -45,6 +46,8 @@ public class MazeLevel : MonoBehaviour
     private bool gameOver = false;
     private bool goalReached = false;
 
+    public GameObject navMesh;
+
     private MazeGenerator mazeGenerator;
  
     // Only one instance of level allowed.
@@ -60,6 +63,7 @@ public class MazeLevel : MonoBehaviour
 
     void Start()
     {
+        navMesh = GameObject.Find("NavMesh");
         mazeGenerator = GetComponent<MazeGenerator>(); // Get component with type MazeGenerator attached to this object. 
         NewGame();
     }
@@ -70,6 +74,8 @@ public class MazeLevel : MonoBehaviour
         if (timeLimit == 0) {
             timeLimit = 60;
         }
+        // set time limit
+        timeLimit = 60;
 
         // Default maze size. 
         if (rows == 0 || cols == 0) {
@@ -98,6 +104,25 @@ public class MazeLevel : MonoBehaviour
 
 
         // Display Rules UI.
+
+        // Bake NavMesh
+        navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+        StartCoroutine(UpdateNavMesh());
+    }
+
+    // Continuously update navmesh in case of destroyed cubes
+    // Not a permanent solution but works for a demo
+    public IEnumerator UpdateNavMesh()
+    {
+
+        // Bake NavMesh
+        navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+        UnityEngine.Debug.Log("baking navmesh");
+
+        // Delay fade for some time
+        yield return new WaitForSeconds(1);
     }
 
     // --- Update methods.

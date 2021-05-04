@@ -85,6 +85,9 @@ public class MazeGenerator : MonoBehaviour
         // --- Instantiate all objects
         GameObject Base = new GameObject("Base"); // Parent gameobject for floor tiles.
 
+        // Give Base CubeRoot
+        Base.AddComponent<CubeRoot>();
+
         float tilePositionX = 0.0f;
         float tilePositionY = 0.0f;
         float tilePositionZ = 0.0f;
@@ -112,9 +115,10 @@ public class MazeGenerator : MonoBehaviour
                 Vector3 tilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
                 GameObject floor = Instantiate(floors[Random.Range(0, floors.Count)], tilePosition, Quaternion.identity, Base.transform); // spawn prefab
                 //floor.tag = "Generated";
+                floor.tag = "Ground";
                 if (maze[i, j] == 1) {
                     Vector3 wallPosition = new Vector3(tilePositionX, tilePositionY + floorHeight, tilePositionZ);
-                    Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
+                    GameObject wall = Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
                 }
 
                 // Instantiate entities and items.

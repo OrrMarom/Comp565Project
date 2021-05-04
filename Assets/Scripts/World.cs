@@ -11,7 +11,7 @@ public class World : MonoBehaviour
 
     private void Start()
     {
-        //GenerateWorld();
+        GenerateWorld();
     }
 
     // Initial world generation
