@@ -43,6 +43,8 @@ public class MazeLevel : MonoBehaviour
         if (timeLimit == 0) {
             timeLimit = 60;
         }
+        // set time limit
+        timeLimit = 60;
 
         // Default maze size. 
         if (rows == 0 || cols == 0) {
