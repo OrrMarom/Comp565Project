@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class GreenAmmo : Ammo
 {
-    protected override void updateItemCount() {
+    private int points = 15;
 
+    protected override void updateItemCount() {
+        MazeLevel.Instance.addAmmoG(1);
     }
 
     protected override void updateScore() {
-        int points = 15;
-        Debug.Log("+1 green ammo");
+        MazeLevel.Instance.addToScore(points);
     }
 }

@@ -12,7 +12,7 @@ public class WreckOnCollision : MonoBehaviour
         if (collision.gameObject.GetComponent(typeof(PlayerController))) {
             Destroy(this.gameObject);
             Instantiate(wreckedVersion, transform.position, transform.rotation);
+            MazeLevel.Instance.addToScore(250);
         }
-        
     }
 }

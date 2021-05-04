@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Key : CollectibleItem
 {
+    private int points = 100;
     protected override void updateItemCount() {
-
+        MazeLevel.Instance.subtractKeyCount(1);
     }
 
     protected override void updateScore() {
-        int points = 100;
         Debug.Log("+1 key.");
+        MazeLevel.Instance.addToScore(points);
     }
 }

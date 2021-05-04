@@ -12,16 +12,17 @@ using TMPro;
 public class MazeLevel : MonoBehaviour
 {
     // Singleton
-    //private static MazeLevel levelInstance;
+    private static MazeLevel levelInstance;
+    public static MazeLevel Instance { get { return levelInstance; } }
 
     // Player and HUD variables
     [SerializeField] private TextMeshProUGUI timeLabel;
     [SerializeField] private TextMeshProUGUI scoreLabel;
     private TextMeshProUGUI health;
-    [SerializeField] private TextMeshProUGUI ammo_r;
-    [SerializeField] private TextMeshProUGUI ammo_g;
-    [SerializeField] private TextMeshProUGUI ammo_b;
-    [SerializeField] private TextMeshProUGUI keyCount;
+    [SerializeField] private TextMeshProUGUI ammoRLabel;
+    [SerializeField] private TextMeshProUGUI ammoGLabel;
+    [SerializeField] private TextMeshProUGUI ammoBLabel;
+    [SerializeField] private TextMeshProUGUI keyLabel;
 
     // Level item variables.
     private int ammo_rCount = 0;
@@ -46,6 +47,17 @@ public class MazeLevel : MonoBehaviour
 
     private MazeGenerator mazeGenerator;
  
+    // Only one instance of level allowed.
+    private void Awake() 
+    {
+        if (levelInstance != null && levelInstance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            levelInstance = this;
+        }
+    }
+
     void Start()
     {
         mazeGenerator = GetComponent<MazeGenerator>(); // Get component with type MazeGenerator attached to this object. 
@@ -78,19 +90,41 @@ public class MazeLevel : MonoBehaviour
         scoreLabel.text = "Score: " + score.ToString();
 
         // Initialize items.
-        ammo_r.text = ammo_rCount.ToString();
-        ammo_g.text = ammo_gCount.ToString();
-        ammo_b.text = ammo_bCount.ToString();
+        ammoRLabel.text = ammo_rCount.ToString();
+        ammoGLabel.text = ammo_gCount.ToString();
+        ammoBLabel.text = ammo_bCount.ToString();
         keysLeft = totalKeys;
-        keyCount.text = keyString + keysLeft.ToString();
+        keyLabel.text = keyString + keysLeft.ToString();
 
 
         // Display Rules UI.
     }
 
+    // --- Update methods.
     public void addToScore(int points) {
         score += points;
     }
+
+    public void addAmmoR(int ammoNum) {
+        ammo_rCount += ammoNum;
+    }
+
+    public void addAmmoG(int ammoNum) {
+        ammo_gCount += ammoNum;
+    }
+
+    public void addAmmoB(int ammoNum) {
+        ammo_bCount += ammoNum;
+    }
+
+    public void subtractKeyCount(int count) {
+        keysLeft -= count;
+    }
+
+
+    // public void updateHealthLabel(int newHealth) {
+    //     //HealthBar.updateHealth();
+    // }
 
     // private void pickupKey() {
     //     addToScore(500);
@@ -118,14 +152,24 @@ public class MazeLevel : MonoBehaviour
             gameOver = true;
         }
         
-        // update scoreLabel
+        // update score
         scoreLabel.text = "Score: " + score.ToString();
 
+        // update ammo count
+        ammoRLabel.text = ammo_rCount.ToString();
+        ammoGLabel.text = ammo_gCount.ToString();
+        ammoBLabel.text = ammo_bCount.ToString();
+
+        // update key count
+        keyLabel.text = keyString + keysLeft.ToString();
+
+        // Game Over
         if (gameOver) {
             // GameOver UI.
             // "GameOver!"; "Score: "
         }
 
+        // Game Clear
         if (goalReached) {
             // Calculate total score  
             addToScore(timeRemaining * 1000);
