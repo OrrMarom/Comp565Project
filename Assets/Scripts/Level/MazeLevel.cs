@@ -121,6 +121,9 @@ public class MazeLevel : MonoBehaviour
         keysLeft -= count;
     }
 
+    public int getScore() {
+        return score;
+    }
 
     // public void updateHealthLabel(int newHealth) {
     //     //HealthBar.updateHealth();
