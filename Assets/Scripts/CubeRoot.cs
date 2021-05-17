@@ -22,7 +22,7 @@ public class CubeRoot : MonoBehaviour
     public void RadiusDestroy(GameObject g, Vector3 force_vector, int iterations)
     {
         Transform t = g.transform;
-        double range = 2.5;
+        double range = 3.5;
         float force_intensity = 10f;
 
         // Do own first
