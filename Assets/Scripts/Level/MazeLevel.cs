@@ -79,8 +79,8 @@ public class MazeLevel : MonoBehaviour
 
         // Initialize items.
         HUDController.Instance.updateAmmoR(ammo_rCount);
-        HUDController.Instance.updateAmmoR(ammo_gCount);
-        HUDController.Instance.updateAmmoR(ammo_bCount);
+        HUDController.Instance.updateAmmoG(ammo_gCount);
+        HUDController.Instance.updateAmmoB(ammo_bCount);
         keysLeft = totalKeys;
         HUDController.Instance.updateKeyLabel(keysLeft);
 
@@ -179,8 +179,8 @@ public class MazeLevel : MonoBehaviour
 
         // Update ammo count.
         HUDController.Instance.updateAmmoR(ammo_rCount);
-        HUDController.Instance.updateAmmoR(ammo_gCount);
-        HUDController.Instance.updateAmmoR(ammo_bCount);
+        HUDController.Instance.updateAmmoG(ammo_gCount);
+        HUDController.Instance.updateAmmoB(ammo_bCount);
 
         // update key count
         HUDController.Instance.updateKeyLabel(keysLeft);
