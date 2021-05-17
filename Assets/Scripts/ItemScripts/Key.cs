@@ -6,7 +6,9 @@ public class Key : CollectibleItem
 {
     private int points = 100;
     protected override void updateItemCount() {
-        MazeLevel.Instance.subtractKeyCount(1);
+        if (MazeLevel.Instance.getKeyCount() > 0) {
+            MazeLevel.Instance.subtractKeyCount(1);
+        }    
     }
 
     protected override void updateScore() {
