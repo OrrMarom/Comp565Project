@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Ammo : CollectibleItem
 {
-
+    // add animation to ammo
 }
