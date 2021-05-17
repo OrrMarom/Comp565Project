@@ -34,8 +34,10 @@ public class MazeLevel : MonoBehaviour
 
     private int score = 0;
     private bool gameOver = false;
-
+    
     public GameObject navMesh;
+    public GameObject player;
+    public GameObject gameOverMenu;
 
     private MazeGenerator mazeGenerator;
  
@@ -53,6 +55,10 @@ public class MazeLevel : MonoBehaviour
     void Start()
     {
         navMesh = GameObject.Find("NavMesh");
+        player = GameObject.Find("Holding the gun");
+        gameOverMenu = GameObject.Find("GameOverMenu");
+        gameOverMenu.SetActive(false);
+        UnityEngine.Debug.Log(gameOverMenu);
         mazeGenerator = GetComponent<MazeGenerator>(); // Get component with type MazeGenerator attached to this object. 
         NewGame();
     }
@@ -150,10 +156,11 @@ public class MazeLevel : MonoBehaviour
         timer.Stop();
         addToScore(timeRemaining * 2000);
         HUDController.Instance.updateScore(score);
-        // pause game
-        //Time.timeScale = 0; //unpause: Time.timeScale = 1;
-        // activate Game Over UI.
-        // play Game Over music
+        player.SetActive(false);
+        GameObject.Find("MainUi").SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        gameOverMenu.SetActive(true);
     }
 
     public void GameClear() {
@@ -161,9 +168,12 @@ public class MazeLevel : MonoBehaviour
         timer.Stop();
         addToScore(timeRemaining * 3000);
         HUDController.Instance.updateScore(score);
-        // pause game
-        // activate Game Over UI.
-        // play Game Clear music
+        player.SetActive(false);
+        GameObject.Find("MainUi").SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        gameOverMenu.SetActive(true);
+        gameOverMenu.GetComponent<TextMeshProUGUI>().text ="Score: " + score.ToString();
     }
 
     // Update is called once per frame

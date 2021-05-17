@@ -13,10 +13,8 @@ public class ScoreDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textMesh=GetComponent<TextMeshProUGUI>();
-        Debug.Log(textMesh);
         score = MazeLevel.Instance.getScore();
-        textMesh.text= "Score: " + score.ToString();
+        Debug.Log(score);
     }
 
     // Update is called once per frame
