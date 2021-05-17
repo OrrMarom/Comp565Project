@@ -12,7 +12,7 @@ public class HUDController : MonoBehaviour
     // Text variables
     [SerializeField] private TextMeshProUGUI timeLabel;
     [SerializeField] private TextMeshProUGUI scoreLabel;
-    [SerializeField] private TextMeshProUGUI health;
+    //[SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI ammoRLabel; // bullet
     [SerializeField] private TextMeshProUGUI ammoGLabel; // health
     [SerializeField] private TextMeshProUGUI ammoBLabel; // time
@@ -28,7 +28,7 @@ public class HUDController : MonoBehaviour
     }
 
     public void updateHealth() {
-
+        
     }
 
     public void updateAmmoR(int ammoCount) {

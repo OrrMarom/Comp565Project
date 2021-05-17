@@ -118,6 +118,10 @@ public class MazeLevel : MonoBehaviour
         score += points;
     }
 
+    public void addToTime(int seconds) {
+        timeRemaining += seconds;
+    }
+
     public void addAmmoR(int ammoNum) {
         ammo_rCount += ammoNum;
     }
