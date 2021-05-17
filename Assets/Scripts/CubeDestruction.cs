@@ -8,23 +8,14 @@ public class CubeDestruction : MonoBehaviour
     static float cube_size = 1.0f / subcube_rows;
     static int count = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void explode(Vector3 force_vector, float force_intensity)
     {
         // Parent cube should be hidden and without collision
         gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
+        
+        // Take off DestructableCube tag so it is not destroyed twice
+        gameObject.tag = "Untagged";
 
         // Material for all subcubes
         Material subcube_mat = new Material(GetComponent<Renderer>().material);

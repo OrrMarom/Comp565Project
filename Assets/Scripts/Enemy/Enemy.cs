@@ -9,8 +9,10 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
-    bool alreadyAttacked;
-    public float timeBetweenAttacks;
+    bool inAttack;
+
+    // Set time between attacks to length of jump animation
+    private float timeBetweenAttacks = 1.333f;
 
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     private float health = 100;
+    private float stuckCheckTime;
+    private Vector3 stuckCheckPosition;
 
     Animator anim;
     Rigidbody rb;
@@ -38,12 +42,18 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange)
-            Patroling();
-        else if (playerInSightRange && !playerInAttackRange)
-            ChasePlayer();
-        else if (playerInAttackRange)
-            AttackPlayer();
+        // Let attack continue
+        if (!inAttack)
+        {
+            if (!playerInSightRange && !playerInAttackRange)
+                Patrolling();
+            else if (playerInSightRange && !playerInAttackRange)
+                ChasePlayer();
+            else if (playerInAttackRange)
+                AttackPlayer();
+        }
+
+
     }
 
     private void Awake()
@@ -52,15 +62,40 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Patroling()
+    private void Patrolling()
     {
+        agent.updatePosition = true;
+        agent.updateRotation = true;
         agent.isStopped = false;
         anim.SetInteger("Walk", 1);
 
         if (!walkPointSet)
+        {
             SearchWalkPoint();
+            // Update stuck values
+            stuckCheckTime = Time.time;
+            stuckCheckPosition = transform.position;
+        }
         if (walkPointSet)
+        {
             agent.SetDestination(walkPoint);
+            // Check if we are stuck every 2 seconds
+            if (Time.time > stuckCheckTime + 2)
+            {
+                float distance = Vector3.Distance(stuckCheckPosition, transform.position);
+
+                // Update stuck values
+                stuckCheckTime = Time.time;
+                stuckCheckPosition = transform.position;
+                
+                // Stuck, set a new walkpoint
+                if (distance < 0.5f)
+                {
+                    Debug.Log(gameObject.name + " stuck, generating new walkpoint");
+                    walkPointSet = false;
+                }
+            }
+        }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
@@ -71,36 +106,84 @@ public class Enemy : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        while (true)
+        {
+            float randomZ = Random.Range(-walkPointRange, walkPointRange);
+            float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+            // Find random walk point
+            Vector3 randomWalkPoint = Random.insideUnitSphere * walkPointRange;
+            randomWalkPoint += transform.position;
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomWalkPoint, out hit, walkPointRange, 1);
+            Vector3 randomPosition = hit.position;
+
+            walkPoint = randomPosition;
+
+            // Ensure this puts us on ground
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            {
+                walkPointSet = true;
+                break;
+            }
+
+            //
+            // Raycast in each direction to find a place to traverse in maze
+            /*
+            RaycastHit hitInfo;
+            bool ray = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitInfo, 1);
+
+            if (ray)
+            {
+                Debug.Log("ray here, continuing")
+            }
+            else
+            {
+                Debug.Log("no ray, break")
+            }
+            
+
+            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            {
+                walkPointSet = true;
+                break;
+            }
+            */
+        }
+
     }
 
     private void ChasePlayer()
     {
+        agent.updatePosition = true;
+        agent.updateRotation = true;
         agent.isStopped = false;
         anim.SetInteger("Walk", 1);
+
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
         // Don't move while attacking
-        anim.SetInteger("Walk", 1);
+        anim.SetInteger("Walk", 0);
         //agent.SetDestination(new Vector3(player.position.x, player.position.y + 1, player.position.z));
 
         transform.LookAt(player);
 
-        if (!alreadyAttacked)
+        if (!inAttack)
         {
             // Do attack
+            inAttack = true;
+            agent.updatePosition = false;
+            agent.updateRotation = false;
             agent.isStopped = true;
-            rb.isKinematic = false;
-            rb.useGravity = true;
+            //rb.isKinematic = false;
+            //rb.useGravity = true;
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(0, 300, 0);
             anim.SetTrigger("jump");
 
@@ -108,14 +191,14 @@ public class Enemy : MonoBehaviour
 
 
             // Reset attack
-            alreadyAttacked = true;
+            playerInAttackRange  = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;
+        inAttack = false;
     }
 
     public void TakeDamage(int damage)

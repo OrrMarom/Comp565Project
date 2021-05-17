@@ -9973,7 +9973,7 @@ GameObject:
   - component: {fileID: 159832139}
   - component: {fileID: 159832138}
   - component: {fileID: 159832137}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10011,7 +10011,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c11b9ba1565b31e488233adfa7de09eb, type: 2}
+  - {fileID: 2100000, guid: 0175591608e607e4795d7c56b1b32f78, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12782,13 +12782,12 @@ MonoBehaviour:
   player: {fileID: 2061875650}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  timeBetweenAttacks: 2
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 1
+  walkPointRange: 10
   sightRange: 10
   attackRange: 1
   playerInSightRange: 0
@@ -24593,6 +24592,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2061875650}
     m_Modifications:
+    - target: {fileID: 473123389, guid: c29fb9d156076764bb50c5bd2af908e3, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 473123390, guid: c29fb9d156076764bb50c5bd2af908e3, type: 3}
       propertyPath: m_LocalScale.x
       value: -0.0043979166
@@ -72608,7 +72611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1245656208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109374,8 +109377,7 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114412009841591444, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2edcf95960b81249bf3f4a30ad1a908, type: 3}
 --- !u!1 &1820866072
 GameObject:
@@ -117092,8 +117094,17 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114807186997810214, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
+    - target: {fileID: 95970164997226778, guid: aa3784adb6428184e991be2d60ee0cb2,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114807186997810214, guid: aa3784adb6428184e991be2d60ee0cb2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
 --- !u!1 &1935110536
 GameObject:
@@ -126712,7 +126723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2103329115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126725,40 +126736,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901c6a6c96bdc3547a2aac8f30fbcdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: d1678523e10edcc4c8b92ea109d5265a, type: 2}
-  blockTypes:
-  - blockName: Air
-    isSolid: 0
-    backFaceTexture: 0
-    frontFaceTexture: 0
-    topFaceTexture: 0
-    bottomFaceTexture: 0
-    leftFaceTexture: 0
-    rightFaceTexture: 0
-  - blockName: Bedrock
-    isSolid: 1
-    backFaceTexture: 9
-    frontFaceTexture: 9
-    topFaceTexture: 9
-    bottomFaceTexture: 9
-    leftFaceTexture: 9
-    rightFaceTexture: 9
-  - blockName: Stone
-    isSolid: 1
-    backFaceTexture: 0
-    frontFaceTexture: 0
-    topFaceTexture: 0
-    bottomFaceTexture: 0
-    leftFaceTexture: 0
-    rightFaceTexture: 0
-  - blockName: Grass
-    isSolid: 1
-    backFaceTexture: 2
-    frontFaceTexture: 2
-    topFaceTexture: 7
-    bottomFaceTexture: 1
-    leftFaceTexture: 2
-    rightFaceTexture: 2
+  blocktypes: []
+  debugScreen: {fileID: 0}
 --- !u!4 &2103329116
 Transform:
   m_ObjectHideFlags: 0

@@ -108,21 +108,30 @@ public class MazeLevel : MonoBehaviour
         // Bake NavMesh
         navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
 
-        StartCoroutine(UpdateNavMesh());
+        UpdateNavMesh();
+        //StartCoroutine(UpdateNavMesh());
     }
 
     // Continuously update navmesh in case of destroyed cubes
     // Not a permanent solution but works for a demo
-    public IEnumerator UpdateNavMesh()
+    //public IEnumerator UpdateNavMesh()
+    //{
+
+    //    // Bake NavMesh
+    //    navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+    //    UnityEngine.Debug.Log("baking navmesh");
+
+    //    // Delay fade for some time
+    //    yield return new WaitForSeconds(1);
+    //}
+
+    public void UpdateNavMesh()
     {
 
         // Bake NavMesh
         navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
-
         UnityEngine.Debug.Log("baking navmesh");
-
-        // Delay fade for some time
-        yield return new WaitForSeconds(1);
     }
 
     // --- Update methods.
