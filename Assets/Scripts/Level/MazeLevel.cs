@@ -59,13 +59,6 @@ public class MazeLevel : MonoBehaviour
 
     private void NewGame() 
     {
-        // Default time limit.
-        if (timeLimit == 0) {
-            timeLimit = 60;
-        }
-        // set time limit
-        timeLimit = 60;
-
         // Default maze size. 
         if (rows == 0 || cols == 0) {
             rows = 15; 
