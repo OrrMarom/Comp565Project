@@ -210,9 +210,10 @@ public class Enemy : MonoBehaviour
             if (distance < 2.5f)
             {
                 // Do damage
-                //HUDController.Instance.updateHealth(-15);
+                HUDController.Instance.updateHealth(-150);
             }
         }
+        yield return null;
     }
 
     private void ResetAttack()

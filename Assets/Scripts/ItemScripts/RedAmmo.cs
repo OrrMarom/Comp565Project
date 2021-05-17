@@ -6,9 +6,10 @@ using UnityEngine;
 public class RedAmmo : Ammo
 {
     private int points = 25;
+    private int healthPoints = 150;
 
     protected override void itemBehavior() {
-        // recover health
+        HUDController.Instance.updateHealth(healthPoints);
     }
 
     protected override void updateItemCount() {
