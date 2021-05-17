@@ -1788,6 +1788,7 @@ MonoBehaviour:
   ammoGLabel: {fileID: 1529501932}
   ammoBLabel: {fileID: 1609682433}
   keyLabel: {fileID: 48001547}
+  healthBar: {fileID: 1757985917}
 --- !u!4 &1590613753
 Transform:
   m_ObjectHideFlags: 0

@@ -92,7 +92,6 @@ public class Enemy : MonoBehaviour
                 // Stuck, set a new walkpoint
                 if (distance < 0.5f)
                 {
-                    Debug.Log(gameObject.name + " stuck, generating new walkpoint");
                     walkPointSet = false;
                 }
             }
@@ -188,13 +187,33 @@ public class Enemy : MonoBehaviour
             rb.AddForce(0, 300, 0);
             anim.SetTrigger("jump");
 
-            // Damage code for player goes here
+            // Damage
+            StartCoroutine(DamagePlayer());
 
 
             // Reset attack
             playerInAttackRange  = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+    private IEnumerator DamagePlayer()
+    {
+        // Wait until peak of jump to damage player
+        yield return new WaitForSeconds(.667f);
+
+        // Only do damage if enemy still active
+        if (this.gameObject.transform.localScale != new Vector3(0, 0, 0))
+        {
+            float distance = Vector3.Distance(player.position, transform.position);
+
+            if (distance < 2.5f)
+            {
+                // Do damage
+                HUDController.Instance.updateHealth(-150);
+            }
+        }
+        yield return null;
     }
 
     private void ResetAttack()
