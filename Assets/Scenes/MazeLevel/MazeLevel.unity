@@ -1965,6 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce8923ec72144ca8976eeab10ae9fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalKeys: 3
   rows: 0
   cols: 0
   timeLimit: 90
@@ -1983,8 +1984,7 @@ MonoBehaviour:
   floorDimensions: {x: 2, y: 1, z: 2}
   wallDimensions: {x: 2, y: 5, z: 2}
   initialTilePosition: {x: 0, y: 0, z: 0}
-  floorMat: {fileID: 2100000, guid: 481d1d21c29b1ed41b50472c451abfda, type: 2}
-  permanentWall: {fileID: 2035532035564130945, guid: d2b02fabf2be2420cb34c1b931709b4e,
+  permanentWall: {fileID: 159552298329049679, guid: 6023b595f6fce427bad907e14c29ed9d,
     type: 3}
   destructibleWall: {fileID: 6619761816653112609, guid: 9131c671fdd634287a5c30c1d3148c2d,
     type: 3}
@@ -2002,7 +2002,6 @@ MonoBehaviour:
   - {fileID: 3969888507067582443, guid: f4d64b1302e304924a634b8df539786f, type: 3}
   player: {fileID: 1322011892}
   treasure: {fileID: 735312312059532066, guid: f8208361fc863b546a509cfc71447d71, type: 3}
-  enemyCount: 5
 --- !u!1 &2028315885
 GameObject:
   m_ObjectHideFlags: 0

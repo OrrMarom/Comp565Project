@@ -9,7 +9,7 @@ public class MazeGenerator : MonoBehaviour
     public Vector3 floorDimensions;
     public Vector3 wallDimensions;
     public Vector3 initialTilePosition;
-    [SerializeField] private Material floorMat;
+    //[SerializeField] private Material floorMat;
 
     public GameObject permanentWall;
     public GameObject destructibleWall;
@@ -21,8 +21,7 @@ public class MazeGenerator : MonoBehaviour
     private Vector2Int playerLocation;
     public GameObject player;
     public GameObject treasure;
-    [SerializeField] private int enemyCount;
-    private int keyCount;
+    //private int keyCount;
     
     
     public void Start() {
@@ -86,13 +85,8 @@ public class MazeGenerator : MonoBehaviour
         float floorDepth = floorDimensions.z;
         initialTilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
 
-
-        // Initialize enemies
-        if (enemyCount == 0) {
-            enemyCount = 5;
-        }
-
         int[] wallProb = new int[] {0, 0, 0, 0, 0, 0, 0, 1, 1, 1}; // 0 = permanent, 1 = destructible; seven 0s, three 1s. 
+        int[] objectProb  = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}; // 0 = item, 1 = enemy
 
         // Create maze.
         for (int i = 0; i < rows; i++) {
@@ -116,16 +110,17 @@ public class MazeGenerator : MonoBehaviour
                 // Instantiate entities and items.
                 Vector3 spawnPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
                 if (maze[i, j] == 0) {
-                    if (i == playerLocation.x && j == playerLocation.y) {
+                    if (i == playerLocation.x && j == playerLocation.y) { // spawn player
                         player.transform.position = spawnPosition;
-                    } else if (i == treasureLocation.x && j == treasureLocation.y) {
+                    } else if (i == treasureLocation.x && j == treasureLocation.y) { // spawn treasure
                         Instantiate(treasure, spawnPosition, Quaternion.identity);
-                    } else {
-                        if (Random.value > 0.6) {
+                    } else { // spawn items and enemies
+                        int selectObject = objectProb[Random.Range(0, objectProb.Length)];
+                        if (selectObject == 0) {
                             Instantiate(items[Random.Range(0, items.Count)], spawnPosition, Quaternion.identity);
-                        } else if (enemyCount > 0){
-                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);
-                            enemyCount--;
+                        }
+                        if (selectObject == 1) {
+                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);     
                         }
                     }
                 }
@@ -154,28 +149,4 @@ public class MazeGenerator : MonoBehaviour
         // }
         //Destroy(Maze);
     }
-
-    void pickStartingPosition() {
-
-    }
-
-    void pickGoalPosition() {
-
-    }
-
-    void pickKeysPosition() {
-
-    }
-
-    // private int randomFloorTile() {
-    //     return 0;
-    // }
-
-    // private int randomWall() {
-    //     return 0;
-    // }
-
-    // private int randomItem() {
-    //     return 0;
-    // }
 }

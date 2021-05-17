@@ -20,7 +20,7 @@ public class MazeLevel : MonoBehaviour
     private int ammo_bCount = 0;
     private int keysLeft;
     private const string keyString = "Keys Left: ";
-    private int totalKeys = 5;
+    [SerializeField] private int totalKeys = 3; // Total keys needed to collect treasure. 
 
     // Other level vars.
     [SerializeField] private int rows;
@@ -120,9 +120,10 @@ public class MazeLevel : MonoBehaviour
         timer.Stop();
         addToScore(timeRemaining * 2000);
         HUDController.Instance.updateScore(score);
-            // pause game
-            // activate Game Over UI.
-            // play Game Over music
+        // pause game
+        //Time.timeScale = 0; //unpause: Time.timeScale = 1;
+        // activate Game Over UI.
+        // play Game Over music
     }
 
     public void GameClear() {
