@@ -44,8 +44,6 @@ public class HUDController : MonoBehaviour
             healthBar.setPlayerHealth(newHealth);
             healthBar.changeFillAmount();
         }
-  
-
     }
 
     public void updateAmmoR(int ammoCount) {

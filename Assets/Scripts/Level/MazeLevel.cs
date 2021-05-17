@@ -157,7 +157,7 @@ public class MazeLevel : MonoBehaviour
         UnityEngine.Debug.Log("Gameover");
         HUDController.Instance.updateTime(0);
         timer.Stop();
-        addToScore(timeRemaining * 2000);
+        addToScore(timeRemaining * 1000);
         HUDController.Instance.updateScore(score);
         player.SetActive(false);
         GameObject.Find("MainUi").SetActive(false);
