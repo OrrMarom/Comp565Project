@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +11,16 @@ public class SpawnBullet : MonoBehaviour
 
     public List<GameObject> Gun = new List<GameObject>();
 
+    public AudioSource audioSource;
+    public AudioClip clip;
+    public float volume=0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
+    
         effectToSpawn = vfx[0];
+        
     }
 
     // Update is called once per frame
@@ -23,6 +29,9 @@ public class SpawnBullet : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             SpawnVFX();
+
+            audioSource=gameObject.GetComponent<AudioSource>();
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 

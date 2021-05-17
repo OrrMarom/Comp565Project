@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MouseDestroy : MonoBehaviour
 {
+
     // Hold reference to MazeLevel to bake navmesh
     static MazeLevel mazeLevel;
 
