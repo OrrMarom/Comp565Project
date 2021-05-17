@@ -18,9 +18,16 @@ public class ScoreDisplayMenu : MonoBehaviour
     {
         saveFile = Application.persistentDataPath + "/Comp565_Group4_FinalProject.json";
         textMesh=GetComponent<TextMeshProUGUI>();
-        string Scores = readFile();
-        Scores = Scores.Replace(",","\n");
-        textMesh.text= Scores;
+        string printStr = "";
+        string fileContents = readFile();
+        string[] scores = fileContents.Split(',');
+        for (var i = 0; i<scores.Length; i++)
+        {
+            if (i>=10) break;
+            printStr+=scores[i] +"\n";
+        }
+
+        textMesh.text= printStr;
     }
 
     // Update is called once per frame
