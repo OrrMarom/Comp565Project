@@ -44,9 +44,9 @@ public class MazeGenerator : MonoBehaviour
         // Generate maze. Random.value is 0.0-1.0 inclusive.
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if ( i == 0 || i == rows - 1  || j == 0 || j == cols - 1 ) {
+                if ( i == 0 || i == rows - 1  || j == 0 || j == cols - 1 ) { // outer wall
                     maze[i, j] = 1;
-                } else if (i % 2 == 0 && j % 2 == 0) {
+                } else if (i % 2 == 0 && j % 2 == 0) { // every other 'cell'
                     if ( Random.value > 0.1 ) {
                         maze[i, j] = 1;
                         var a = (Random.value < 0.5) ? 0 : (Random.value < 0.5 ? -1 : 1);
@@ -88,7 +88,7 @@ public class MazeGenerator : MonoBehaviour
         float floorDepth = floorDimensions.z;
         initialTilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
 
-        int[] wallProb = new int[] {0, 0, 0, 0, 0, 0, 0, 1, 1, 1}; // 0 = permanent, 1 = destructible; seven 0s, three 1s. 
+        int[] wallProb = new int[] {0, 0, 0, 0, 0, 1, 1, 1, 1, 1}; // 0 = permanent, 1 = destructible; seven 0s, three 1s. 
         int[] objectProb  = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}; // 0 = item, 1 = enemy
 
         // Create maze.
@@ -100,13 +100,18 @@ public class MazeGenerator : MonoBehaviour
                 if (maze[i, j] == 1) {
                     Vector3 wallPosition = new Vector3(tilePositionX, tilePositionY + floorHeight, tilePositionZ);
 
-                    // Create permanent or destructible wall randomly.
-                    int selectWall = wallProb[Random.Range(0, wallProb.Length)];
-                    if (selectWall == 0) {
+                    if ( i == 0 || i == rows - 1  || j == 0 || j == cols - 1 ) { // outer wall
                         Instantiate(permanentWall, wallPosition, Quaternion.identity, Base.transform);
                     }
-                    if (selectWall == 1) {
-                        Instantiate(destructibleWall, wallPosition, Quaternion.identity, Base.transform);
+                    else {
+                        // Create permanent or destructible wall randomly.
+                        int selectWall = wallProb[Random.Range(0, wallProb.Length)];
+                        if (selectWall == 0) {
+                            Instantiate(permanentWall, wallPosition, Quaternion.identity, Base.transform);
+                        }
+                        if (selectWall == 1) {
+                            Instantiate(destructibleWall, wallPosition, Quaternion.identity, Base.transform);
+                        }
                     }
                 }
 
