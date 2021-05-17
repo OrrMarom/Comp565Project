@@ -145,7 +145,9 @@ public class MazeLevel : MonoBehaviour
     public void subtractKeyCount(int count) {
         keysLeft -= count;
     }
-
+    public int getScore() {
+        return score;
+    }
 
     // public void updateHealthLabel(int newHealth) {
     //     //HealthBar.updateHealth();
