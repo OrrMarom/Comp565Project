@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    public GameObject wreckedVersion;
 
     bool inAttack;
 
@@ -210,8 +211,44 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void DestroyEnemy()
+    public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        // Enemy should be hidden and without collision
+        this.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        this.gameObject.GetComponent<Collider>().enabled = false;
+
+        // Take off enemy tag so it is not destroyed twice
+        this.gameObject.tag = "Untagged";
+
+        GameObject wrecked = Instantiate(wreckedVersion, transform.position, transform.rotation);
+        //StartCoroutine(fadeAndDestroy(wrecked));
+        foreach (Transform child in wrecked.transform)
+        {
+            StartCoroutine(fadeAndDestroy(child.gameObject));
+            Debug.Log(child.gameObject.name);
+        }
+        MazeLevel.Instance.addToScore(250);
+    }
+
+    private IEnumerator fadeAndDestroy(GameObject enemy)
+    {
+        float time_until_fade = Random.Range(1f, 2f);
+        float fade_until_destroy = 2f;
+        float alpha = 1.0f;
+
+        // Delay fade for some time
+        yield return new WaitForSeconds(time_until_fade);
+
+        // Fade cube out and destroy
+        Material subcube_mat = enemy.GetComponent<Renderer>().material;
+        while (alpha > 0.0f)
+        {
+            alpha = alpha - (fade_until_destroy * Time.deltaTime);
+            subcube_mat.color = new Color(subcube_mat.color.r, subcube_mat.color.g, subcube_mat.color.b, alpha);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(enemy);
+
+        yield return null;
     }
 }
