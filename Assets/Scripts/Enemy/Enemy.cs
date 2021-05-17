@@ -233,7 +233,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator fadeAndDestroy(GameObject enemy)
     {
         float time_until_fade = Random.Range(1f, 2f);
-        float fade_until_destroy = 3f;
+        float fade_until_destroy = 2f;
         float alpha = 1.0f;
 
         // Delay fade for some time
