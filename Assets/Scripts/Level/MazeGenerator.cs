@@ -77,6 +77,9 @@ public class MazeGenerator : MonoBehaviour
         // --- Instantiate all objects
         GameObject Base = new GameObject("Base"); // Parent gameobject for floor tiles.
 
+        // Give Base CubeRoot
+        Base.AddComponent<CubeRoot>();
+
         float tilePositionX = 0.0f;
         float tilePositionY = 0.0f;
         float tilePositionZ = 0.0f;

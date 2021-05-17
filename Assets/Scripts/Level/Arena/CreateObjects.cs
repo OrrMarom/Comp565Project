@@ -61,6 +61,7 @@ public class CreateObjects : MonoBehaviour
                 GameObject cube = Instantiate(prefabCube, new Vector3(x, y, z), Quaternion.identity);
                 cube.GetComponent<Renderer>().material = prefabCube.GetComponent<Renderer>().sharedMaterial;
                 cube.transform.SetParent(gameObject.transform);
+                cube.AddComponent<Rigidbody>(); // add rigidbody for destruction
             }
         }
     }
