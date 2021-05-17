@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System;
+using TMPro;
 
 // --- Controller for the maze level.
 
@@ -40,7 +41,8 @@ public class MazeLevel : MonoBehaviour
     public GameObject gameOverMenu;
 
     private MazeGenerator mazeGenerator;
- 
+
+
     // Only one instance of level allowed.
     private void Awake() 
     {
@@ -152,6 +154,7 @@ public class MazeLevel : MonoBehaviour
     }
 
     public void GameOver() {
+        UnityEngine.Debug.Log("Gameover");
         HUDController.Instance.updateTime(0);
         timer.Stop();
         addToScore(timeRemaining * 2000);
@@ -173,7 +176,6 @@ public class MazeLevel : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameOverMenu.SetActive(true);
-        gameOverMenu.GetComponent<TextMeshProUGUI>().text ="Score: " + score.ToString();
     }
 
     // Update is called once per frame

@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreSubmit : MonoBehaviour
 {
@@ -15,14 +16,13 @@ public class ScoreSubmit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = MazeLevel.Instance.getScore();
         saveFile = Application.persistentDataPath + "/Comp565_Group4_FinalProject.json";
-        Debug.Log(saveFile);
     }
 
     // Update is called once per frame
     void Update()
     {
+        score = MazeLevel.Instance.getScore();
     }
 
     public void updateName(string input){
@@ -33,6 +33,7 @@ public class ScoreSubmit : MonoBehaviour
         string day = System.DateTime.Now.ToString("MM/dd/yyyy");
         saveContents = (day + "       Player: " + ScoreName + "       Score: " + score + ',');
         writeFile();
+        SceneManager.UnloadScene("MazeLevel");
     }
 
     public string readFile()
