@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6763,6 +6763,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &99540502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 656840944}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 99540503}
+  m_Layer: 0
+  m_Name: hiddenBullet (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &99540503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 656840944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99540502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 751362660}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &104650725
 GameObject:
   m_ObjectHideFlags: 0
@@ -10011,7 +10041,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c11b9ba1565b31e488233adfa7de09eb, type: 2}
+  - {fileID: 2100000, guid: a293034410ea13649bd3df957b15f3ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28798,7 +28828,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 751362660}
+  - {fileID: 1209222454}
   m_Father: {fileID: 2061875650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34126,6 +34156,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &590409534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 565068817}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751362660}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &595009803
 GameObject:
   m_ObjectHideFlags: 0
@@ -42180,18 +42226,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!1 &751362659 stripped
+--- !u!1 &751362659
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bbfe290a17f19f438d4cd373801596b,
     type: 3}
   m_PrefabInstance: {fileID: 565068817}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &751362660 stripped
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751362663}
+  - component: {fileID: 751362662}
+  - component: {fileID: 751362661}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &751362660
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2bbfe290a17f19f438d4cd373801596b,
     type: 3}
   m_PrefabInstance: {fileID: 565068817}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590409534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 99540503}
+  m_Father: {fileID: 1209222454}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &751362661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42204,9 +42273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f52f06bee9c3334593a3ad301daf87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  bulletSpeed: 100
-  audioSource: {fileID: 0}
 --- !u!82 &751362662
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42303,6 +42369,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &751362663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 565068817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751362659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1209222454}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &755225746
 GameObject:
   m_ObjectHideFlags: 0
@@ -70713,6 +70793,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &1209222453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 565068817}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209222454}
+  m_Layer: 0
+  m_Name: Ak-74 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1209222454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 565068817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209222453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 751362663}
+  - {fileID: 751362660}
+  m_Father: {fileID: 473123390}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209270093
 GameObject:
   m_ObjectHideFlags: 0
@@ -126933,8 +127045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901c6a6c96bdc3547a2aac8f30fbcdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2061875650}
+  spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: d1678523e10edcc4c8b92ea109d5265a, type: 2}
-  blockTypes:
+  blocktypes:
   - blockName: Air
     isSolid: 0
     backFaceTexture: 0
@@ -126943,30 +127057,15 @@ MonoBehaviour:
     bottomFaceTexture: 0
     leftFaceTexture: 0
     rightFaceTexture: 0
-  - blockName: Bedrock
-    isSolid: 1
-    backFaceTexture: 9
-    frontFaceTexture: 9
-    topFaceTexture: 9
-    bottomFaceTexture: 9
-    leftFaceTexture: 9
-    rightFaceTexture: 9
   - blockName: Stone
     isSolid: 1
-    backFaceTexture: 0
-    frontFaceTexture: 0
-    topFaceTexture: 0
-    bottomFaceTexture: 0
-    leftFaceTexture: 0
-    rightFaceTexture: 0
-  - blockName: Grass
-    isSolid: 1
-    backFaceTexture: 2
-    frontFaceTexture: 2
-    topFaceTexture: 7
+    backFaceTexture: 1
+    frontFaceTexture: 1
+    topFaceTexture: 1
     bottomFaceTexture: 1
-    leftFaceTexture: 2
-    rightFaceTexture: 2
+    leftFaceTexture: 1
+    rightFaceTexture: 1
+  debugScreen: {fileID: 0}
 --- !u!4 &2103329116
 Transform:
   m_ObjectHideFlags: 0

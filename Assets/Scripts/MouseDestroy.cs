@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class MouseDestroy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Hold reference to MazeLevel to bake navmesh
+    static MazeLevel mazeLevel;
 
     // Update is called once per frame
     void Update()
@@ -27,21 +24,28 @@ public class MouseDestroy : MonoBehaviour
                 Vector3 v2 = hitInfo.point;
 
                 // Pointing away from player towards object
-                Vector3 force = v2 - v1;
+                Vector3 force = v2 - v1;            
 
-                Debug.Log("tag = " + hitInfo.collider.tag);
-                Debug.Log("obj = " + hitInfo.collider.name);
-                Debug.Log("parent = " + hitInfo.collider.transform.parent.name);
-                Debug.Log("location = " + hitInfo.collider.transform.position);
-                Debug.Log("parent location = " + hitInfo.collider.transform.parent.position);
-
-                // Only destroy walls
+                // Check to ensure we are hitting a wall to destroy
                 if (hitInfo.collider.tag == "DestructableCube")
                 {
-                    //hitInfo.collider.gameObject.GetComponentInParent<CubeRoot>().RadiusDestroy(hitInfo.collider.gameObject, force, 1);
                     hitInfo.collider.gameObject.transform.parent.GetComponentInParent<CubeRoot>().RadiusDestroy(hitInfo.collider.gameObject, force, 1);
+
+                    // Update navmesh
+                    if (mazeLevel == null)
+                    {
+                        mazeLevel = GameObject.Find("LevelController").GetComponent<MazeLevel>();
+                    }
+                    // Update navmesh to reflect destroyed environment 
+                    StartCoroutine(UpdateNavMesh());
                 }
             }
         }
+    }
+
+    IEnumerator UpdateNavMesh()
+    {
+        yield return new WaitForSeconds(2);
+        mazeLevel.UpdateNavMesh();
     }
 }

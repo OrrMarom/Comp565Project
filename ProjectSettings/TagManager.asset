@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DestructableCube
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Cloud
   - Player
   - Ground
-  - 
+  - PermanentWall
   - DestructableWall
   - 
   - 
