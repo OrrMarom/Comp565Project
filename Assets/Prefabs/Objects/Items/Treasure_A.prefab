@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 735312312062463778}
   - component: {fileID: 735312312061464034}
   - component: {fileID: -1865262359564938938}
+  - component: {fileID: -8962390536053654539}
   m_Layer: 0
   m_Name: Treasure_A
   m_TagString: Untagged
@@ -93,3 +94,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28, y: 0.32, z: 0.39999998}
   m_Center: {x: 0, y: 0.16, z: 0}
+--- !u!114 &-8962390536053654539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735312312059532066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5b7965dc57240e791d0a607583d86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
