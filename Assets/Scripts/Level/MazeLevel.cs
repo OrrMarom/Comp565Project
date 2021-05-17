@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System;
-using TMPro;
 
 // --- Controller for the maze level.
 
@@ -14,15 +13,6 @@ public class MazeLevel : MonoBehaviour
     // Singleton
     private static MazeLevel levelInstance;
     public static MazeLevel Instance { get { return levelInstance; } }
-
-    // Player and HUD variables
-    [SerializeField] private TextMeshProUGUI timeLabel;
-    [SerializeField] private TextMeshProUGUI scoreLabel;
-    private TextMeshProUGUI health;
-    [SerializeField] private TextMeshProUGUI ammoRLabel;
-    [SerializeField] private TextMeshProUGUI ammoGLabel;
-    [SerializeField] private TextMeshProUGUI ammoBLabel;
-    [SerializeField] private TextMeshProUGUI keyLabel;
 
     // Level item variables.
     private int ammo_rCount = 0;
@@ -43,7 +33,6 @@ public class MazeLevel : MonoBehaviour
 
     private int score = 0;
     private bool gameOver = false;
-    private bool goalReached = false;
 
     private MazeGenerator mazeGenerator;
  
@@ -81,23 +70,20 @@ public class MazeLevel : MonoBehaviour
 
         // Initialize time.
         timeRemaining = timeLimit;
-        timeLabel.text = timeLimit.ToString();
+        HUDController.Instance.updateTime(timeRemaining);
         timer = new Stopwatch();
         timer.Start();
 
-        // Initialzie score.
+        // Initialize score.
         score = 0;
-        scoreLabel.text = "Score: " + score.ToString();
+        HUDController.Instance.updateScore(score); // Update HUD
 
         // Initialize items.
-        ammoRLabel.text = ammo_rCount.ToString();
-        ammoGLabel.text = ammo_gCount.ToString();
-        ammoBLabel.text = ammo_bCount.ToString();
+        HUDController.Instance.updateAmmoR(ammo_rCount);
+        HUDController.Instance.updateAmmoR(ammo_gCount);
+        HUDController.Instance.updateAmmoR(ammo_bCount);
         keysLeft = totalKeys;
-        keyLabel.text = keyString + keysLeft.ToString();
-
-
-        // Display Rules UI.
+        HUDController.Instance.updateKeyLabel(keysLeft);
     }
 
     // --- Update methods.
@@ -125,21 +111,29 @@ public class MazeLevel : MonoBehaviour
         return score;
     }
 
-    // public void updateHealthLabel(int newHealth) {
-    //     //HealthBar.updateHealth();
-    // }
+    public int getKeyCount() {
+        return keysLeft;
+    }
 
-    // private void pickupKey() {
-    //     addToScore(500);
-    // }
+    public void GameOver() {
+        HUDController.Instance.updateTime(0);
+        timer.Stop();
+        addToScore(timeRemaining * 2000);
+        HUDController.Instance.updateScore(score);
+            // pause game
+            // activate Game Over UI.
+            // play Game Over music
+    }
 
-    // private void pickupAmmo() {
-    //     addToScore(50);
-    // }
-
-    // private void pickupTreasure() {
-    //     addToScore(2000);
-    // }
+    public void GameClear() {
+        HUDController.Instance.updateTime(0);
+        timer.Stop();
+        addToScore(timeRemaining * 3000);
+        HUDController.Instance.updateScore(score);
+        // pause game
+        // activate Game Over UI.
+        // play Game Clear music
+    }
 
     // Update is called once per frame
     void Update()
@@ -148,37 +142,20 @@ public class MazeLevel : MonoBehaviour
         TimeSpan timeElapsed = timer.Elapsed;
         timeRemaining = (timeLimit - timeElapsed.Seconds);
         if (timeRemaining > 0) {
-            timeLabel.text = timeRemaining.ToString(); // update timeLabel
+            HUDController.Instance.updateTime(timeRemaining); // update timeLabel
         } else {
-            timeLabel.text = "0";
-            timer.Stop();
-            gameOver = true;
+            GameOver();
         }
         
-        // update score
-        scoreLabel.text = "Score: " + score.ToString();
+        // Update score.
+        HUDController.Instance.updateScore(score);
 
-        // update ammo count
-        ammoRLabel.text = ammo_rCount.ToString();
-        ammoGLabel.text = ammo_gCount.ToString();
-        ammoBLabel.text = ammo_bCount.ToString();
+        // Update ammo count.
+        HUDController.Instance.updateAmmoR(ammo_rCount);
+        HUDController.Instance.updateAmmoR(ammo_gCount);
+        HUDController.Instance.updateAmmoR(ammo_bCount);
 
         // update key count
-        keyLabel.text = keyString + keysLeft.ToString();
-
-        // Game Over
-        if (gameOver) {
-            // GameOver UI.
-            // "GameOver!"; "Score: "
-        }
-
-        // Game Clear
-        if (goalReached) {
-            // Calculate total score  
-            addToScore(timeRemaining * 1000);
-
-            // Cleared UI.
-            // "Level Cleared!"; "Score: "
-        }
+        HUDController.Instance.updateKeyLabel(keysLeft);
     }
 }

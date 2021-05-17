@@ -11,9 +11,8 @@ public class MazeGenerator : MonoBehaviour
     public Vector3 initialTilePosition;
     [SerializeField] private Material floorMat;
 
-    //[SerializeField] private int wallsDestroyed = 0;
-
-    public List<GameObject> walls;
+    public GameObject permanentWall;
+    public GameObject destructibleWall;
     public List<GameObject> floors;
     public List<GameObject> items;
     public List<GameObject> enemies;
@@ -30,7 +29,6 @@ public class MazeGenerator : MonoBehaviour
         // Initialize game objects
         floorDimensions = new Vector3(2.0f, 1.0f, 2.0f);
         wallDimensions = new Vector3(2.0f, 5.0f, 2.0f);
-        walls = new List<GameObject>();
         floors = new List<GameObject>();
         items = new List<GameObject>();
     }
@@ -44,7 +42,7 @@ public class MazeGenerator : MonoBehaviour
         // Initialize maze.
         int[,] maze = new int[rows, cols]; // z, x (rows, columns); 0 = no wall, 1 = wall. 
 
-        // Generate maze.
+        // Generate maze. Random.value is 0.0-1.0 inclusive.
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if ( i == 0 || i == rows - 1  || j == 0 || j == cols - 1 ) {
@@ -60,12 +58,7 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        // --- Place items and player.
-
-        // Hashtable h = new Hashtable();
-        // h.Add(playerLocation, player);
-
-        // player
+        // Place player.
         for (int i = 1; i < rows - 1; i++) {
             for (int j = 1; j < cols - 1; j++) {
                 if (maze[i, j] == 0) {
@@ -73,7 +66,7 @@ public class MazeGenerator : MonoBehaviour
                 }
             }
         }
-        // treasure
+        // Place treasure.
         for (int i = rows - 1; i > 0; i--) {
             for (int j = cols - 1; j > 0; j--) {
                 if (maze[i, j] == 0) {
@@ -93,35 +86,37 @@ public class MazeGenerator : MonoBehaviour
         float floorDepth = floorDimensions.z;
         initialTilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
 
-        // Create single base floor. 
-        // GameObject Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        // Floor.transform.localScale = new Vector3( (float) cols * floorWidth, 1.0f, (float) rows * floorDepth);
-        // Floor.transform.position = initialTilePosition;
-        // if (floorMat) {
-        //     Floor.GetComponent<Renderer>().material = floorMat;
-        // }
 
         // Initialize enemies
         if (enemyCount == 0) {
             enemyCount = 5;
         }
 
+        int[] wallProb = new int[] {0, 0, 0, 0, 0, 0, 0, 1, 1, 1}; // 0 = permanent, 1 = destructible; seven 0s, three 1s. 
+
         // Create maze.
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 Vector3 tilePosition = new Vector3(tilePositionX, tilePositionY, tilePositionZ);
                 GameObject floor = Instantiate(floors[Random.Range(0, floors.Count)], tilePosition, Quaternion.identity, Base.transform); // spawn prefab
-                //floor.tag = "Generated";
+
                 if (maze[i, j] == 1) {
                     Vector3 wallPosition = new Vector3(tilePositionX, tilePositionY + floorHeight, tilePositionZ);
-                    Instantiate(walls[Random.Range(0, walls.Count)], wallPosition, Quaternion.identity, Base.transform);
+
+                    // Create permanent or destructible wall randomly.
+                    int selectWall = wallProb[Random.Range(0, wallProb.Length)];
+                    if (selectWall == 0) {
+                        Instantiate(permanentWall, wallPosition, Quaternion.identity, Base.transform);
+                    }
+                    if (selectWall == 1) {
+                        Instantiate(destructibleWall, wallPosition, Quaternion.identity, Base.transform);
+                    }
                 }
 
                 // Instantiate entities and items.
                 Vector3 spawnPosition = new Vector3(tilePositionX, tilePositionY + 1.0f, tilePositionZ);
                 if (maze[i, j] == 0) {
                     if (i == playerLocation.x && j == playerLocation.y) {
-                        //Instantiate(player, spawnPosition, Quaternion.identity);
                         player.transform.position = spawnPosition;
                     } else if (i == treasureLocation.x && j == treasureLocation.y) {
                         Instantiate(treasure, spawnPosition, Quaternion.identity);
@@ -141,17 +136,9 @@ public class MazeGenerator : MonoBehaviour
             tilePositionX += floorWidth;
         }
 
-        // --- Destroy random walls.
-        // int randomWallIndex = Random.Range(0, cols * rows - 1);
-        // for (int i = 0; i < wallsDestroyed; i++) {
-        //     // TODO:
-        //     while (randomWallIndex != playerTileIndex && randomWallIndex != exitTileIndex) {
-        //         randomWallIndex = Random.Range(0, cols * rows - 1);
-        //     }
-        // }
     } // CreateNewMaze
 
-    // Combine floortiles into one mesh to reduce number of draw calls.
+    // TODO: Combine floortiles into one mesh to reduce number of draw calls.
     private void combineFloorMesh() {
 
     }
