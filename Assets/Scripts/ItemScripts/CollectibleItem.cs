@@ -9,14 +9,14 @@ public class CollectibleItem : MonoBehaviour
         if (other.gameObject.GetComponent(typeof(PlayerController)))
         {
             itemBehavior();
+            updateItemCount();
+            updateScore();
             Destroy(this.gameObject);
         }
     }
 
-    private void itemBehavior()
-    {
-        updateItemCount();
-        updateScore();
+    protected virtual void itemBehavior() {
+
     }
 
     protected virtual void updateItemCount() {
