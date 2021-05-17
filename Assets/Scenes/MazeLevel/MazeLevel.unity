@@ -368,9 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d4b4f317094604b811f2038af4a652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  clip: {fileID: 0}
-  volume: 0.5
 --- !u!81 &352594773
 AudioListener:
   m_ObjectHideFlags: 0
@@ -402,7 +399,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 120
   orthographic: 0
@@ -840,17 +837,17 @@ PrefabInstance:
     - target: {fileID: 3462110016250873463, guid: c29fb9d156076764bb50c5bd2af908e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.166
+      value: -0.163
       objectReference: {fileID: 0}
     - target: {fileID: 3462110016250873463, guid: c29fb9d156076764bb50c5bd2af908e3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.322
+      value: -2.328
       objectReference: {fileID: 0}
     - target: {fileID: 3462110016250873463, guid: c29fb9d156076764bb50c5bd2af908e3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.10000002
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 3462110016250873463, guid: c29fb9d156076764bb50c5bd2af908e3,
         type: 3}
@@ -2143,9 +2140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757985915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ec113f817452b4ea69b2b6d95f2ce9, type: 3}
+  m_Script: {fileID: 11500000, guid: da3d8747709cb4b48965258bbf6b968d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: {fileID: 1757985918}
 --- !u!114 &1757985918
 MonoBehaviour:
   m_ObjectHideFlags: 0
