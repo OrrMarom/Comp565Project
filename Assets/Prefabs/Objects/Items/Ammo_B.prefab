@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5852608297215100185}
   - component: {fileID: 8340226922014887517}
   - component: {fileID: 8041818582370492648}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ammo_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}

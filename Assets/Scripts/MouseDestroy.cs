@@ -24,7 +24,10 @@ public class MouseDestroy : MonoBehaviour
                 Vector3 v2 = hitInfo.point;
 
                 // Pointing away from player towards object
-                Vector3 force = v2 - v1;            
+                Vector3 force = v2 - v1;
+
+                Debug.Log(hitInfo.collider.name);
+                Debug.Log(hitInfo.collider.tag);
 
                 // Check to ensure we are hitting a wall to destroy
                 if (hitInfo.collider.tag == "DestructableCube")
@@ -38,6 +41,11 @@ public class MouseDestroy : MonoBehaviour
                     }
                     // Update navmesh to reflect destroyed environment 
                     StartCoroutine(UpdateNavMesh());
+                }
+                // Check to see if we are hitting an enemy
+                else if (hitInfo.collider.tag == "Enemy")
+                {
+                    hitInfo.collider.GetComponent<Enemy>().DestroyEnemy();
                 }
             }
         }

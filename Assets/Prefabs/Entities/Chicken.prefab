@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5615759015966737961}
   m_Layer: 0
   m_Name: Chicken
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,13 +129,14 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  wreckedVersion: {fileID: 6551490779683240629, guid: c16db8994d6f846eb8c9a6c0a81e88fd,
+    type: 3}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   sightRange: 5
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
-  lastDistance: 0
 --- !u!1 &5614327842706321320
 GameObject:
   m_ObjectHideFlags: 0

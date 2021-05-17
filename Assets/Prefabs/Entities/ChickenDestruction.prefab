@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6551490779685495923}
   - component: {fileID: 2948450365454521807}
   - component: {fileID: 2511435070555516951}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LegL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 6551490779685495925}
   - component: {fileID: 8112326772730128449}
   - component: {fileID: 3848103920229222605}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6551490779683202709}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ChickenDestruction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 6551490779685495927}
   - component: {fileID: 1848414669992466964}
   - component: {fileID: 8815821224125212616}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 6551490779685495921}
   - component: {fileID: 628882341275989534}
   - component: {fileID: 8372630532756519479}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LegR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 656392719742630122, guid: 7d3088680c74340f982f96ba9670ac2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5850792229590125400, guid: 7d3088680c74340f982f96ba9670ac2d,
         type: 3}
       propertyPath: m_RootOrder
@@ -562,6 +567,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChickenExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 656392719742630122, guid: 7d3088680c74340f982f96ba9670ac2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5850792229590125400, guid: 7d3088680c74340f982f96ba9670ac2d,
         type: 3}
