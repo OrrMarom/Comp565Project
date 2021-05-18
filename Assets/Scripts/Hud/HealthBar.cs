@@ -28,6 +28,7 @@ public class HealthBar : MonoBehaviour
 
         Health.fillAmount = fillRatio;
         if (fillRatio == 0.0f) {
+            // TODO: Call GameOver once
             MazeLevel.Instance.GameOver();
         }
     }

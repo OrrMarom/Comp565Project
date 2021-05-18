@@ -33,6 +33,7 @@ public class MazeLevel : MonoBehaviour
     private Stopwatch timer;
     private int timeRemaining;
 
+
     private int score = 0;
     private bool gameOver = false;
     
@@ -127,7 +128,9 @@ public class MazeLevel : MonoBehaviour
     }
 
     public void addToTime(int seconds) {
-        timeRemaining += seconds;
+        if (timeLimit < 300) { // 5 minutes max
+            timeLimit += seconds;
+        }
     }
 
     public void addAmmoR(int ammoNum) {
@@ -187,6 +190,7 @@ public class MazeLevel : MonoBehaviour
         if (timeRemaining > 0) {
             HUDController.Instance.updateTime(timeRemaining); // update timeLabel
         } else {
+            // TODO: call GameOver once. Disable Update? 
             GameOver();
         }
         
