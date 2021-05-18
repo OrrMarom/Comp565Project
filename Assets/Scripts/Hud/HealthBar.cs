@@ -27,6 +27,9 @@ public class HealthBar : MonoBehaviour
         Debug.Log("fillRatio: " + fillRatio);
 
         Health.fillAmount = fillRatio;
+        if (fillRatio == 0.0f) {
+            MazeLevel.Instance.GameOver();
+        }
     }
 
     // Start is called before the first frame update
