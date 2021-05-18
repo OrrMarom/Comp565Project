@@ -128,7 +128,8 @@ public class MazeGenerator : MonoBehaviour
                             Instantiate(items[Random.Range(0, items.Count)], spawnPosition, Quaternion.identity);
                         }
                         if (selectObject == 1) {
-                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);     
+                            Instantiate(enemies[Random.Range(0, enemies.Count)], spawnPosition, Quaternion.identity);
+                            Debug.Log("spawn position = " + spawnPosition);
                         }
                     }
                 }

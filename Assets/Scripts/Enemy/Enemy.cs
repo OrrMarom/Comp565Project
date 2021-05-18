@@ -210,7 +210,7 @@ public class Enemy : MonoBehaviour
             if (distance < 2.5f)
             {
                 // Do damage
-                HUDController.Instance.updateHealth(-150);
+                HUDController.Instance.updateHealth(-250);
             }
         }
         yield return null;
@@ -251,8 +251,8 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator fadeAndDestroy(GameObject enemy)
     {
-        float time_until_fade = Random.Range(1f, 2f);
-        float fade_until_destroy = 2f;
+        float time_until_fade = Random.Range(0f, 1f);
+        float fade_until_destroy = 1.5f;
         float alpha = 1.0f;
 
         // Delay fade for some time

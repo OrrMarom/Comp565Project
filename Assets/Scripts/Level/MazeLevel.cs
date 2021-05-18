@@ -35,7 +35,7 @@ public class MazeLevel : MonoBehaviour
 
 
     private int score = 0;
-    private bool gameOver = false;
+    public bool gameOver = false;
     
     public GameObject navMesh;
     public GameObject player;
@@ -97,29 +97,13 @@ public class MazeLevel : MonoBehaviour
         navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
 
         UpdateNavMesh();
-        //StartCoroutine(UpdateNavMesh());
     }
-
-    // Continuously update navmesh in case of destroyed cubes
-    // Not a permanent solution but works for a demo
-    //public IEnumerator UpdateNavMesh()
-    //{
-
-    //    // Bake NavMesh
-    //    navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
-
-    //    UnityEngine.Debug.Log("baking navmesh");
-
-    //    // Delay fade for some time
-    //    yield return new WaitForSeconds(1);
-    //}
 
     public void UpdateNavMesh()
     {
 
         // Bake NavMesh
         navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
-        UnityEngine.Debug.Log("baking navmesh");
     }
 
     // --- Update methods.
@@ -167,6 +151,7 @@ public class MazeLevel : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameOverMenu.SetActive(true);
+        gameOver = true;
     }
 
     public void GameClear() {
@@ -190,8 +175,9 @@ public class MazeLevel : MonoBehaviour
         if (timeRemaining > 0) {
             HUDController.Instance.updateTime(timeRemaining); // update timeLabel
         } else {
-            // TODO: call GameOver once. Disable Update? 
-            GameOver();
+            // TODO: call GameOver once. Disable Update?
+            if (!gameOver)
+                GameOver();
         }
         
         // Update score.

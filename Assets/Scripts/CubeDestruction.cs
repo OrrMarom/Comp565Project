@@ -56,8 +56,8 @@ public class CubeDestruction : MonoBehaviour
 
     public IEnumerator fadeAndDestroy(GameObject subcube)
     {
-        float time_until_fade = Random.Range(1f, 2f);
-        float fade_until_destroy = 3f;
+        float time_until_fade = Random.Range(0f, 1f);
+        float fade_until_destroy = 1.5f;
         float alpha = 1.0f;
 
         // Delay fade for some time
