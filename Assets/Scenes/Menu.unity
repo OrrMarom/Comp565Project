@@ -254,8 +254,30 @@ MonoBehaviour:
   m_text: 'This is a game created for COMP 565 Spring 2021 with Prof. Karamian at
     CSUN.
 
+    Members: Brandon, Orr, Tomo, Sulaiman.
 
-    Members: Brandon, Orr, Tomo, Sulaiman.'
+
+    Game Objective:
+
+    Collect
+    3 keys and unlock the treasure chest hidden somewhere in the maze before the
+    timer (or the chickens) get you. The maze is generated using voxels, so you are
+    able to damage the environment around you to help complete the objective.
+
+
+    Items:
+
+    Red
+    blocks will restore health
+
+    Blue blocks will restore a small amount of time
+
+    Green
+    blocks will award a large amount of points
+
+
+    Extra time and keys/items collected
+    will factor into your overall score'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65e3a43d853684218bd2d75296a6abcc, type: 2}
   m_sharedMaterial: {fileID: 6052690058510399209, guid: 65e3a43d853684218bd2d75296a6abcc,
@@ -279,7 +301,7 @@ MonoBehaviour:
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
+  m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -766,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -140}
+  m_AnchoredPosition: {x: 0, y: -379}
   m_SizeDelta: {x: 110, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493337061
@@ -3943,7 +3965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 119}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2032543595
