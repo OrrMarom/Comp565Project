@@ -17,4 +17,4 @@ Sulaiman Rahman @SulaimanRahman https://github.com/SulaimanRahman
 Tomo Buchbert @tomokb https://github.com/tomokb
 ### Demo
 
-[![Voxel Maze FPS Demo](images/DemoPreview.PNG)](https://drive.google.com/file/d/1g_Z8Tz9Ops7NDLbdI9G8ZcW3TfmWxgUt/view?usp=sharing)
+<kbd>[![Voxel Maze FPS Demo](images/DemoPreview.PNG)](https://drive.google.com/file/d/1g_Z8Tz9Ops7NDLbdI9G8ZcW3TfmWxgUt/view?usp=sharing)</kbd>
